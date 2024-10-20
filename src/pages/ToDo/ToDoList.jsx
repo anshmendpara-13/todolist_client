@@ -204,7 +204,7 @@
 //                 ]}
 //               />
 
-             
+
 //             </div>
 //         </div>
 //         <Divider />
@@ -220,7 +220,7 @@
 //               </div> 
 //               <p>{item?.description}</p>
 //                </div>
-             
+
 //                <div className={styles.toDoCardFooter}>
 //                <Tag>{getFormattedDate(item?.createdAt)}</Tag>
 //                <div className={styles.toDoFooterAction}>
@@ -229,7 +229,7 @@
 //                  {item?.isCompleted ? <Tooltip title="Mark as Incomplete"><CheckCircleFilled onClick={()=>handleUpdateStatus(item._id,false)} style={{color:'green'}}  className={styles.actionIcon} /></Tooltip> :<Tooltip title="Mark as Completed"><CheckCircleOutlined onClick={()=>handleUpdateStatus(item._id,true)}  className={styles.actionIcon}/></Tooltip>}
 //                </div>  
 //                </div>
-               
+
 //            </div>  
 //             )
 //           }) : currentTodoTask.length > 0  ? currentTodoTask.map((item)=>{
@@ -242,7 +242,7 @@
 //               </div> 
 //               <p>{item?.description}</p>
 //                </div>
-             
+
 //                <div className={styles.toDoCardFooter}>
 //                <Tag>{getFormattedDate(item?.createdAt)}</Tag>
 //                <div className={styles.toDoFooterAction}>
@@ -251,7 +251,7 @@
 //                  {item?.isCompleted ? <Tooltip title="Mark as Incomplete"><CheckCircleFilled onClick={()=>handleUpdateStatus(item._id,false)} style={{color:'green'}}  className={styles.actionIcon} /></Tooltip> :<Tooltip title="Mark as Completed"><CheckCircleOutlined onClick={()=>handleUpdateStatus(item._id,true)}  className={styles.actionIcon}/></Tooltip>}
 //                </div>  
 //                </div>
-               
+
 //            </div>  
 //             )
 //           }) : 
@@ -259,11 +259,11 @@
 //           <div className={styles.noTaskWrapper}>
 //           <Empty />
 //         </div> 
-          
+
 //           }
 //         </div>
 
-       
+
 //         <Modal confirmLoading={loading} title="Add New To Do Task" open={isAdding} onOk={handleSubmitTask} onCancel={()=>setIsAdding(false)}>
 //         <Input style={{marginBottom:'1rem'}} placeholder='Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
 //         <Input.TextArea placeholder='Description' value={description} onChange={(e)=>setDescription(e.target.value)} />
@@ -273,11 +273,11 @@
 //         <Input style={{marginBottom:'1rem'}} placeholder='Updated Title' value={updatedTitle} onChange={(e)=>setUpdatedTitle(e.target.value)} />
 //         <Input.TextArea style={{marginBottom:'1rem'}} placeholder='Updated Description' value={updatedDescription} onChange={(e)=>setUpdatedDescription(e.target.value)} />
 //         <Select
-      
+
 //       onChange={(value)=>setUpdatedStatus(value)}
 //       value={updatedStatus}
 //       options={[
-        
+
 //         {
 //           value: false,
 //           label: 'Not Completed',
@@ -287,7 +287,7 @@
 //           value: true,
 //           label: 'Completed',
 //         },
-     
+
 //       ]}
 //     />
 //       </Modal>
@@ -438,21 +438,23 @@ function ToDoList() {
     <>
       <Navbar active={"myTask"} />
       <section className={styles.toDoWrapper}>
-        <div className={styles.toDoHeader}>
-          <h2>Your Tasks</h2>
-          <Input style={{ width: '50%' }} onChange={handleSearch} placeholder='Search Your Task Here...' />
-          <div>
-            <Button onClick={() => setIsAdding(true)} type="primary" size="large">Add Task</Button>
-            <Select
-              value={currentTaskType}
-              style={{ width: 180, marginLeft: '10px' }}
-              onChange={handleTypeChange}
-              size="large"
-              options={[
-                { value: "incomplete", label: 'Incomplete' },
-                { value: "complete", label: 'Complete' }
-              ]}
-            />
+        <div className={styles.flexcontent}>
+          <div className={styles.toDoHeader}>
+            <h2>Your Tasks</h2>
+            <Input style={{ width: '50%' }} onChange={handleSearch} placeholder='Search Your Task Here...' />
+            <div>
+              <Button onClick={() => setIsAdding(true)} type="primary" size="large">Add Task</Button>
+              <Select
+                value={currentTaskType}
+                style={{ width: 180, marginLeft: '10px' }}
+                onChange={handleTypeChange}
+                size="large"
+                options={[
+                  { value: "incomplete", label: 'Incomplete' },
+                  { value: "complete", label: 'Complete' }
+                ]}
+              />
+            </div>
           </div>
         </div>
         <Divider />
@@ -466,24 +468,28 @@ function ToDoList() {
         </div>
 
         {/* Add Task Modal */}
-        <Modal confirmLoading={loading} title="Add New To Do Task" open={isAdding} onOk={handleSubmitTask} onCancel={() => setIsAdding(false)}>
-          <Input style={{ marginBottom: '1rem' }} placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
-          <Input.TextArea placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
-        </Modal>
+        <div className={styles.flexcontent}>
+          <Modal confirmLoading={loading} title="Add New To Do Task" open={isAdding} onOk={handleSubmitTask} onCancel={() => setIsAdding(false)}>
+            <Input style={{ marginBottom: '1rem' }} placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
+            <Input.TextArea placeholder='Description' value={description} onChange={(e) => setDescription(e.target.value)} />
+          </Modal>
+        </div>
 
         {/* Edit Task Modal */}
-        <Modal confirmLoading={loading} title={`Update ${currentEditItem?.title}`} open={isEditing} onOk={handleUpdateTask} onCancel={() => setIsEditing(false)}>
-          <Input style={{ marginBottom: '1rem' }} placeholder='Updated Title' value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} />
-          <Input.TextArea style={{ marginBottom: '1rem' }} placeholder='Updated Description' value={updatedDescription} onChange={(e) => setUpdatedDescription(e.target.value)} />
-          <Select
-            onChange={setUpdatedStatus}
-            value={updatedStatus}
-            options={[
-              { value: false, label: 'Not Completed' },
-              { value: true, label: 'Completed' }
-            ]}
-          />
-        </Modal>
+        <div className={styles.flexcontent}>
+          <Modal confirmLoading={loading} title={`Update ${currentEditItem?.title}`} open={isEditing} onOk={handleUpdateTask} onCancel={() => setIsEditing(false)}>
+            <Input style={{ marginBottom: '1rem' }} placeholder='Updated Title' value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} />
+            <Input.TextArea style={{ marginBottom: '1rem' }} placeholder='Updated Description' value={updatedDescription} onChange={(e) => setUpdatedDescription(e.target.value)} />
+            <Select
+              onChange={setUpdatedStatus}
+              value={updatedStatus}
+              options={[
+                { value: false, label: 'Not Completed' },
+                { value: true, label: 'Completed' }
+              ]}
+            />
+          </Modal>
+        </div>
       </section>
     </>
   );
