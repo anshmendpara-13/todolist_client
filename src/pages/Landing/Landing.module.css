@@ -10,24 +10,24 @@
 }
 
 .landing__text {
-  width: 40%; /* Default width for larger screens */
+  width: 40%; 
 }
 
 .landing__img {
-  width: 50%; /* Default width for larger screens */
+  width: 50%; 
   margin-left: 2rem;
 }
 
-/* Media query for viewports below 914px */
+
 @media (max-width: 913px) {
   .landing__text {
     margin-top: 100px;
-    width: 100%; /* Set width to 80% for smaller screens */
+    width: 100%; 
     text-align: center;
   }
 
   .landing__img {
-    display: none; /* Remove the landing image */
+    display: none; 
   }
 }
 
