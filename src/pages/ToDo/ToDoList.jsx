@@ -441,7 +441,7 @@ function ToDoList() {
         <div className={styles.flexcontent}>
           <div className={styles.toDoHeader}>
             <h2>Your Tasks</h2>
-            <Input style={{ width: '50%' }} onChange={handleSearch} placeholder='Search Your Task Here...' />
+            <Input style={{ width: '50%', margin:'30px' }} onChange={handleSearch} placeholder='Search Your Task Here...' />
             <div>
               <Button onClick={() => setIsAdding(true)} type="primary" size="large">Add Task</Button>
               <Select

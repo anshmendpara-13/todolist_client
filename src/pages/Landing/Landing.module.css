@@ -1,24 +1,37 @@
 .landing__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 100px;
-    padding: 2rem;
-}
-
-.landing__text {
-    width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  padding: 2rem;
 }
 
 .landing__text h1 {
-    font-size: 4rem;
+  font-size: 4rem;
+}
+
+.landing__text {
+  width: 40%; /* Default width for larger screens */
 }
 
 .landing__img {
-    width: 50%;
-    margin-left: 2rem;
+  width: 50%; /* Default width for larger screens */
+  margin-left: 2rem;
+}
+
+/* Media query for viewports below 914px */
+@media (max-width: 913px) {
+  .landing__text {
+    margin-top: 100px;
+    width: 100%; /* Set width to 80% for smaller screens */
+    text-align: center;
+  }
+
+  .landing__img {
+    display: none; /* Remove the landing image */
+  }
 }
 
 .landing__img img {
-    width: 100%;
-    height: auto; 
+  width: 100%;
+  height: auto;
 }
