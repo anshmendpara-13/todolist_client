@@ -1,30 +1,29 @@
 .toDoWrapper {
-  margin-top: 10%; /* Default margin for larger screens */
+  margin-top: 10%;
   padding: 2rem;
 }
 
 @media (max-width: 768px) {
-  /* Applies styles for viewports below 771px */
   .toDoWrapper {
-    margin-top: 25%; /* Increased margin for smaller screens */
+    margin-top: 25%;
   }
 }
+
 @media (max-width: 610px) {
-  /* Applies styles for viewports below 771px */
   .toDoWrapper {
-    margin-top: 32%; /* Increased margin for smaller screens */
+    margin-top: 32%;
   }
 }
+
 @media (max-width: 480px) {
-  /* Applies styles for viewports below 771px */
   .toDoWrapper {
-    margin-top: 40%; /* Increased margin for smaller screens */
+    margin-top: 40%;
   }
 }
+
 @media (max-width: 410px) {
-  /* Applies styles for viewports below 771px */
   .toDoWrapper {
-    margin-top: 45%; /* Increased margin for smaller screens */
+    margin-top: 45%;
   }
 }
 
@@ -33,115 +32,105 @@
   flex-direction: column;
 }
 
-
-
 .toDoCard {
-    border: 1px solid whitesmoke;
-    box-shadow: 0px 0.233px 8px lightgray;
-    padding: 1rem;
-    border-radius: 10px;
-    width: 25%; /* Default width for larger screens */
-    margin: 1rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #f8f9fa; /* Default background color */
-    transition: background-color 0.3s; /* Smooth background color transition */
-  }
-  
-  /* Responsive background color */
-  @media (max-width: 1139px) {
-    .toDoCard {
-      background-color: #ffffff; /* Change background color for smaller screens */
-      width: 100%; /* Full width on smaller screens */
-      margin: 0.5rem 0; /* Adjust margins for better spacing */
-    }
-  }
-  
-  .toDoCard p {
-    font-size: 15px;
-    color: gray;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .toDoListCardWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; /* Stack items vertically */
-  }
-  
-  .toDoCardFooter,
-  .toDoCardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .toDoCardFooter {
-    border-top: 1px solid rgb(236, 235, 235);
-    padding-top: 10px;
-  }
-  
-  .toDoFooterAction {
-    display: flex;
-  }
-  
-  .actionIcon {
-    font-size: 1.2rem; /* Fixed font-size unit */
-    margin-left: 5px;
-    margin-right: 5px;
-    cursor: pointer;
-    color: var(--primary);
-  }
-  
-  .actionIcon:hover {
-    filter: brightness(50%);
-  }
-  
-  .noTaskWrapper {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: 1px solid whitesmoke;
+  box-shadow: 0px 0.233px 8px lightgray;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 25%;
+  margin: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f8f9fa;
+  transition: background-color 0.3s;
+}
+
+@media (max-width: 1139px) {
+  .toDoCard {
+    background-color: #ffffff;
     width: 100%;
+    margin: 0.5rem 0;
   }
-  
-  /* Media Queries for Responsive Design */
-  
-  /* Medium Devices (Tablets, iPads) */
-  @media (max-width: 1024px) {
-    .toDoCard {
-      width: 45%; /* Increase width for medium screens */
-      margin: 0.5rem; /* Adjust margins */
-    }
+}
+
+.toDoCard p {
+  font-size: 15px;
+  color: gray;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toDoListCardWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.toDoCardFooter,
+.toDoCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toDoCardFooter {
+  border-top: 1px solid rgb(236, 235, 235);
+  padding-top: 10px;
+}
+
+.toDoFooterAction {
+  display: flex;
+}
+
+.actionIcon {
+  font-size: 1.2rem;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+.actionIcon:hover {
+  filter: brightness(50%);
+}
+
+.noTaskWrapper {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .toDoCard {
+    width: 45%;
+    margin: 0.5rem;
   }
-  
-  /* Small Devices (Mobile Phones) */
-  @media (max-width: 768px) {
-    .toDoCard {
-      width: 100%; /* Full width on mobile */
-      margin: 0.5rem 0; /* Adjust margins for better spacing */
-    }
-  
-    .toDoCard p {
-      font-size: 14px; /* Slightly smaller font on mobile */
-    }
-  
-    .noTaskWrapper {
-      padding: 1rem; /* Reduce padding for mobile */
-    }
+}
+
+@media (max-width: 768px) {
+  .toDoCard {
+    width: 100%;
+    margin: 0.5rem 0;
   }
-  
-  /* Extra Small Devices (iPhone SE, etc.) */
-  @media (max-width: 480px) {
-    .toDoCard {
-      margin: 0.25rem 0; /* Further reduce margins on small devices */
-    }
-  
-    .actionIcon {
-      font-size: 1rem; /* Smaller icon size */
-    }
+
+  .toDoCard p {
+    font-size: 14px;
   }
-  
-  
+
+  .noTaskWrapper {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .toDoCard {
+    margin: 0.25rem 0;
+  }
+
+  .actionIcon {
+    font-size: 1rem;
+  }
+}
