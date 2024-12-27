@@ -139,9 +139,12 @@ function ToDoList() {
       <section className={styles.toDoWrapper}>
         <div className={styles.flexcontent}>
           <div className={styles.toDoHeader}>
-            <h2>Your Tasks</h2>
-            <Input style={{ width: '50%', margin: '30px' }} onChange={handleSearch} placeholder='Search Your Task Here...' />
-            <div>
+            <h2 className={styles.yourtask}>Your Tasks</h2>
+            <div className={styles.addcomplete}>
+              <Input style={{ width: '100%', margin: '25px' }} onChange={handleSearch} placeholder='Search Your Task Here...' />
+            </div>
+
+            <div className={styles.addcomplete}>
               <Button onClick={() => setIsAdding(true)} type="primary" size="large">Add Task</Button>
               <Select
                 value={currentTaskType}
