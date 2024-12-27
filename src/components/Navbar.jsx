@@ -40,7 +40,7 @@ function Navbar({ active }) {
 
           <li><Link to="/" className={active === 'home' && 'activeNav'}>Home</Link></li>
           {user && <li><Link to="/to-do-list" className={active === 'myTask' && 'activeNav'}>My Task</Link></li>}
-
+          <br></br>
           {user ?
 
             <Dropdown

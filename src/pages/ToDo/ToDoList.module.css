@@ -27,9 +27,26 @@
   }
 }
 
+.addcomplete {
+  display: flex;
+  justify-content: space-between;
+}
+
 .flexcontent {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.yourtask {
+  margin-top: 30px;
+  text-align: center;
 }
 
 .toDoCard {
