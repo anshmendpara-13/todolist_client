@@ -18,6 +18,10 @@ const getAllToDo = (userId) => {
     return axios.get(SERVER_URL + '/get-all-to-do/' + userId, authHeaders());
 }
 
+const getAllDescription = (userId) => {
+    return axios.get(SERVER_URL + '/get-all-description/' + userId, authHeaders());
+}
+
 const deleteToDo = (id) => {
     return axios.delete(SERVER_URL + '/delete-to-do/' + id, authHeaders());
 }
@@ -32,7 +36,8 @@ const ToDoServices = {
     createToDo,
     getAllToDo,
     deleteToDo,
-    updateToDo
+    updateToDo,
+    getAllDescription
 }
 
 
