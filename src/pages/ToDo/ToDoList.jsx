@@ -7,6 +7,7 @@ import { getUserDetails } from '../../util/GetUser';
 import ToDoServices from '../../services/toDoServices';
 import { useNavigate } from 'react-router';
 import { CheckCircleFilled, CheckCircleOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+// import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 function ToDoList() {
   const [title, setTitle] = useState("");
@@ -121,15 +122,32 @@ function ToDoList() {
     setCurrentTaskType(value);
   };
 
-  // Search Handler
-  const handleSearch = e => {
-    const query = e.target.value.toLowerCase();
-    const filteredList = allToDo.filter(item =>
-      item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
-    );
+  // // Search Handler
+  // const handleSearch = e => {
+  //   const query = e.target.value.toLowerCase();
+  //   const filteredList = allToDo.filter(item =>
+  //     item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query) || item.createdAt.toLowerCase().includes(query)
+  //   );
 
-    setFilteredToDo((filteredList.length > 0) && query ? filteredList : []);
+  //   setFilteredToDo((filteredList.length > 0) && query ? filteredList : []);
+  // };
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+
+    const filteredList = allToDo.filter((item) => {
+      const createdAtStr = new Date(item.createdAt).toLocaleString().toLowerCase();
+
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query) ||
+        createdAtStr.includes(query)
+      );
+    });
+
+    setFilteredToDo(query ? filteredList : []);
   };
+
 
   const getFormattedDate = value => {
     const date = new Date(value);
