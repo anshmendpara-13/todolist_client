@@ -124,8 +124,11 @@ function ToDoList() {
   // Search Handler
   const handleSearch = e => {
     const query = e.target.value.toLowerCase();
-    const filteredList = allToDo.filter(item => item.title.toLowerCase().includes(query));
-    setFilteredToDo(filteredList.length > 0 && query ? filteredList : []);
+    const filteredList = allToDo.filter(item =>
+      item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
+    );
+
+    setFilteredToDo((filteredList.length > 0) && query ? filteredList : []);
   };
 
   const getFormattedDate = value => {
