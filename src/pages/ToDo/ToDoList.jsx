@@ -132,22 +132,56 @@ function ToDoList() {
   //   setFilteredToDo((filteredList.length > 0) && query ? filteredList : []);
   // };
 
+  // const handleSearch = (e) => {
+  //   const query = e.target.value.toLowerCase();
+
+  //   const filteredList = allToDo.filter((item) => {
+  //     const createdAtStr = new Date(item.createdAt).toLocaleString().toLowerCase();
+
+  //     return (
+  //       item.title.toLowerCase().includes(query) ||
+  //       item.description.toLowerCase().includes(query) ||
+  //       createdAtStr.includes(query)
+  //     );
+  //   });
+
+  //   setFilteredToDo(query ? filteredList : []);
+  // };
+
+  const precomputedToDo = allToDo.map((item) => ({
+    ...item,
+    searchableDescription: item.description.toLowerCase(),
+    searchableTitle: item.title.toLowerCase(),
+    searchableCreatedAt: {
+      date: new Date(item.createdAt).toDateString().toLowerCase(), // Sun Jan 05 2025
+      time: new Date(item.createdAt).toLocaleTimeString().toLowerCase() // 5:49:52 PM
+    },
+  }));
+  
   const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-
-    const filteredList = allToDo.filter((item) => {
-      const createdAtStr = new Date(item.createdAt).toLocaleString().toLowerCase();
-
+    const query = e.target.value.toLowerCase().trim();
+  
+    // Early return if query is empty
+    if (!query) {
+      setFilteredToDo([]);
+      return;
+    }
+  
+    // Optimization 1: Use filter with lowercased fields that were precomputed
+    const filteredList = precomputedToDo.filter((item) => {
+      const createdAtStr = item.searchableCreatedAt.date + " " + item.searchableCreatedAt.time;  // Combine date and time
+  
       return (
-        item.title.toLowerCase().includes(query) ||
-        item.description.toLowerCase().includes(query) ||
-        createdAtStr.includes(query)
+        item.searchableTitle.includes(query) || // Search in title
+        item.searchableDescription.includes(query) || // Search in description
+        createdAtStr.includes(query) // Search in date + time from createdAt
       );
     });
-
-    setFilteredToDo(query ? filteredList : []);
+  
+    // Set the filtered ToDo list based on matching results
+    setFilteredToDo(filteredList);
   };
-
+  
 
   const getFormattedDate = value => {
     const date = new Date(value);
