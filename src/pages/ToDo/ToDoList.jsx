@@ -157,31 +157,31 @@ function ToDoList() {
       time: new Date(item.createdAt).toLocaleTimeString().toLowerCase() // 5:49:52 PM
     },
   }));
-  
+
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase().trim();
-  
+
     // Early return if query is empty
     if (!query) {
       setFilteredToDo([]);
       return;
     }
-  
+
     // Optimization 1: Use filter with lowercased fields that were precomputed
     const filteredList = precomputedToDo.filter((item) => {
       const createdAtStr = item.searchableCreatedAt.date + " " + item.searchableCreatedAt.time;  // Combine date and time
-  
+
       return (
         item.searchableTitle.includes(query) || // Search in title
         item.searchableDescription.includes(query) || // Search in description
         createdAtStr.includes(query) // Search in date + time from createdAt
       );
     });
-  
+
     // Set the filtered ToDo list based on matching results
     setFilteredToDo(filteredList);
   };
-  
+
 
   const getFormattedDate = value => {
     const date = new Date(value);
