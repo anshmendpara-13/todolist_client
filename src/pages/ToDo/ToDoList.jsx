@@ -7,6 +7,7 @@ import { getUserDetails } from '../../util/GetUser';
 import ToDoServices from '../../services/toDoServices';
 import { useNavigate } from 'react-router';
 import { CheckCircleFilled, CheckCircleOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import Loader from '../../components/Loader';
 // import ColumnGroup from 'antd/es/table/ColumnGroup';
 
 function ToDoList() {
@@ -23,11 +24,13 @@ function ToDoList() {
   const [currentTaskType, setCurrentTaskType] = useState("incomplete");
   const [currentToDoTask, setCurrentToDoTask] = useState([]);
   const [filteredToDo, setFilteredToDo] = useState([]);
+  const [loadingData, setLoadingData] = useState(true);
 
   const navigate = useNavigate();
 
   // Fetch all ToDos for the logged-in user
   const getAllToDo = useCallback(async () => {
+    setLoadingData(true);
     try {
       const user = getUserDetails();
       if (!user?.userId) {
@@ -38,6 +41,9 @@ function ToDoList() {
       setAllToDo(response.data);
     } catch (err) {
       message.error(getErrorMessage(err));
+    }
+    finally {
+      setLoadingData(false);
     }
   }, [navigate]);
 
@@ -216,12 +222,31 @@ function ToDoList() {
         </div>
         <Divider />
 
-        <div className={styles.toDoListCardWrapper}>
+        {/* <div className={styles.toDoListCardWrapper}>
           {filteredToDo.length > 0
             ? filteredToDo.map(renderToDoCard)
             : currentToDoTask.length > 0
               ? currentToDoTask.map(renderToDoCard)
               : <div className={styles.noTaskWrapper}><Empty /></div>}
+        </div> */}
+
+        <div className={styles.toDoListCardWrapper}>
+          {loadingData ? (
+            <Loader />
+          ) : (
+            <>
+              {filteredToDo.length > 0 || currentToDoTask.length > 0 ? (
+                <>
+                  {filteredToDo.map(renderToDoCard)}
+                  {currentToDoTask.map(renderToDoCard)}
+                </>
+              ) : (
+                <div className={styles.noTaskWrapper}>
+                  <Empty />
+                </div>
+              )}
+            </>
+          )}
         </div>
 
         {/* Add Task Modal */}
