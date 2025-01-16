@@ -124,9 +124,13 @@ function ToDoList() {
   };
 
   // Task Type Change Handler
-  const handleTypeChange = value => {
-    setCurrentTaskType(value);
-  };
+  // const handleTypeChange = value => {
+  //   setCurrentTaskType(value);
+  // };
+
+  const toggleTaskType = () => {
+    setCurrentTaskType((prevType) => (prevType === "incomplete" ? "complete" : "incomplete"));
+  }
 
   // // Search Handler
   // const handleSearch = e => {
@@ -207,7 +211,7 @@ function ToDoList() {
 
             <div className={styles.addcomplete}>
               <Button onClick={() => setIsAdding(true)} type="primary" size="large">Add Task</Button>
-              <Select
+              {/* <Select
                 value={currentTaskType}
                 style={{ width: 180, marginLeft: '10px' }}
                 onChange={handleTypeChange}
@@ -216,8 +220,21 @@ function ToDoList() {
                   { value: "incomplete", label: 'Incomplete' },
                   { value: "complete", label: 'Complete' }
                 ]}
-              />
+              /> */}
+              <Button onClick={toggleTaskType} type="primary" size="large">
+                {currentTaskType === "incomplete" ? "Switch to Complete" : "Switch to Incomplete"}
+              </Button>
+
             </div>
+          </div>
+          <div style={{
+            margin: '20px auto',
+            padding: '10px',
+            textAlign: 'center',
+            fontSize: '16px',
+            display: 'block'
+          }}>
+            Current Task Type: <b>{currentTaskType.charAt(0).toUpperCase() + currentTaskType.slice(1)}</b>
           </div>
         </div>
         <Divider />
